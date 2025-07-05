@@ -124,7 +124,8 @@ export default function RegisterPage() {
                 variant="outline"
                 className="w-full"
                 onClick={() => {
-                  window.location.href = 'http://localhost:8000/api/v1/auth/google/login'
+                  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+                  window.location.href = `${apiUrl}/api/v1/auth/google/login`
                 }}
               >
                 <Chrome className="mr-2 h-4 w-4" />
