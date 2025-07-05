@@ -22,15 +22,14 @@ services:
         value: '["https://tradebuddy-seven.vercel.app"]'
       - key: OAUTH_REDIRECT_URI
         value: "https://tradebuddy-seven.vercel.app/auth/callback"
+  
+  - type: redis
+    name: tradebuddy-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
 
 databases:
   - name: tradebuddy-db
     plan: free
     databaseName: tradebuddy
     user: tradebuddy
-
-services:
-  - type: redis
-    name: tradebuddy-redis
-    plan: free
-    maxmemoryPolicy: allkeys-lru
