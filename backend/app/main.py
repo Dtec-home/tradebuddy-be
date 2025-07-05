@@ -36,11 +36,14 @@ origins = [
     "http://127.0.0.1:3000",
     "http://localhost:8000", 
     "http://127.0.0.1:8000",
+    "https://tradebuddy-seven.vercel.app",  # Production frontend
 ]
 
 # Add configured origins if available
 if settings.BACKEND_CORS_ORIGINS:
     origins.extend([str(origin) for origin in settings.BACKEND_CORS_ORIGINS])
+
+print(f"CORS origins configured: {origins}")
 
 app.add_middleware(
     CORSMiddleware,
