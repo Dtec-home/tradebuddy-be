@@ -27,6 +27,7 @@ services:
     name: tradebuddy-redis
     plan: free
     maxmemoryPolicy: allkeys-lru
+    ipAllowList: []  # Allow connections from Render services only
 
 databases:
   - name: tradebuddy-db
