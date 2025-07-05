@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: tradebuddy-backend
+    runtime: python
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tradebuddy-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: tradebuddy-redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: BACKEND_CORS_ORIGINS
+        value: '["https://tradebuddy-seven.vercel.app"]'
+      - key: OAUTH_REDIRECT_URI
+        value: "https://tradebuddy-seven.vercel.app/auth/callback"
+
+databases:
+  - name: tradebuddy-db
+    plan: free
+    databaseName: tradebuddy
+    user: tradebuddy
+
+services:
+  - type: redis
+    name: tradebuddy-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
