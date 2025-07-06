@@ -45,3 +45,6 @@ flower==2.0.1
 # Utils
 python-json-logger==2.0.7
 tenacity==8.2.3
+
+# Encryption
+cryptography==41.0.7

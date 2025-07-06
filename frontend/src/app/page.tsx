@@ -316,7 +316,8 @@ export default function Home() {
             <div className="mt-8">
               <button 
                 onClick={() => {
-                  window.location.href = 'http://localhost:8000/api/v1/auth/google/login'
+                  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+                  window.location.href = `${apiUrl}/api/v1/auth/google/login`
                 }}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
               >

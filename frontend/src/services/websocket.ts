@@ -10,7 +10,10 @@ class WebSocketService {
   private reconnectDelay = 1000
 
   connect(token: string) {
-    const wsUrl = `ws://localhost:8000/api/v1/ws/connect?token=${token}`
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const wsProtocol = apiUrl.startsWith('https') ? 'wss' : 'ws'
+    const wsHost = apiUrl.replace(/^https?:\/\//, '')
+    const wsUrl = `${wsProtocol}://${wsHost}/api/v1/ws/connect?token=${token}`
     
     try {
       this.ws = new WebSocket(wsUrl)
